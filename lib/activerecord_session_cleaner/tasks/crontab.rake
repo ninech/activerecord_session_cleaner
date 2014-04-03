@@ -15,10 +15,9 @@ namespace :activerecord_session_cleaner do
 
     DEFAULT_ENVIRONMENT = 'development'
 
-    desc 'Setup/update cleanup cron for session cleanup'
+    desc 'Setup/update cron for session cleanup'
     task :update, [:application_name, :days_to_keep] => :environment do |t, args|
-      days_to_keep = args.days_to_keep || 10
-      template_data = ERBStruct.new(days_to_keep: days_to_keep)
+      template_data = ERBStruct.new(days_to_keep: args.days_to_keep)
       template = File.read(File.expand_path('../../templates/schedule.rb.erb', __FILE__))
       schedule_file = Tempfile.new('activerecord_session_cleaner-schedule')
       schedule_file.write template_data.render(template)
@@ -30,6 +29,14 @@ namespace :activerecord_session_cleaner do
         set: "environment=#{ENV['RAILS_ENV'] || DEFAULT_ENVIRONMENT}",
       })
       schedule_file.unlink
+    end
+
+    desc 'Remove cleanup cron for session cleanup'
+    task :clear, [:application_name] => :environment do |t, args|
+      Whenever::CommandLine.execute({
+        clear: true,
+        identifier: "#{args.application_name}-activerecord_session_cleaner",
+      })
     end
   end
 end
