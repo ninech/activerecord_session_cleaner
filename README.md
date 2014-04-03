@@ -2,17 +2,23 @@
 
 Gem to remove old sessions from your ActiveRecord DB.
 
+## Features
+
+* Delete all sessions
+* Delete sessions not updated in the last `$x` days
+* Setup cleanup cron to delete old sessions
+
 ## Tasks
 
-    # Delete all session from an Active Record session store
-    rake activerecord_session_cleaner:cleanup:all
     # Delete old sessions from an Active Record session store
     rake activerecord_session_cleaner:cleanup:old[days_to_keep]
+    # Delete all session from an Active Record session store
+    rake activerecord_session_cleaner:cleanup:all
 
-    # Remove cleanup cron for session cleanup
-    rake activerecord_session_cleaner:crontab:clear[application_name]
     # Setup/update cron for session cleanup
     rake activerecord_session_cleaner:crontab:update[application_name,days_to_keep]
+    # Remove cleanup cron for session cleanup
+    rake activerecord_session_cleaner:crontab:clear[application_name]
 
 Default values:
 
