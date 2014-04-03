@@ -13,6 +13,11 @@ namespace :activerecord_session_cleaner do
       end
     end
 
+    def whenever_identifier(application_name = nil)
+      application_name ||= File.basename(Dir.pwd)
+      "#{application_name}-activerecord_session_cleaner"
+    end
+
     DEFAULT_ENVIRONMENT = 'development'
 
     desc 'Setup/update cron for session cleanup'
@@ -24,7 +29,7 @@ namespace :activerecord_session_cleaner do
       schedule_file.close(false)
       Whenever::CommandLine.execute({
         update: true,
-        identifier: "#{args.application_name}-activerecord_session_cleaner",
+        identifier: whenever_identifier(args.application_name),
         file: schedule_file.path,
         set: "environment=#{ENV['RAILS_ENV'] || DEFAULT_ENVIRONMENT}",
       })
@@ -35,7 +40,7 @@ namespace :activerecord_session_cleaner do
     task :clear, [:application_name] => :environment do |t, args|
       Whenever::CommandLine.execute({
         clear: true,
-        identifier: "#{args.application_name}-activerecord_session_cleaner",
+        identifier: whenever_identifier(args.application_name),
       })
     end
   end
