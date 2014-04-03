@@ -2,6 +2,14 @@
 
 Gem to remove old sessions from your ActiveRecord DB.
 
+## Installation
+
+In your Gemfile, add:
+
+``` ruby
+gem 'activerecord_session_cleaner'
+```
+
 ## Features
 
 * Delete all sessions
