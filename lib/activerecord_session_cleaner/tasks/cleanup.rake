@@ -9,9 +9,9 @@ namespace :activerecord_session_cleaner do
                    else
                      args.days_to_keep.to_i.days.ago
                    end
-      puts "\e[1;33mDeleting sessions before #{keep_after}\e[0m"
+      puts "\e[1;33mDeleting sessions before #{keep_after}\e[0m" if Rake.verbose
       deleted_sessions = ActiverecordSessionCleaner::Session.delete_all(['updated_at < ?', keep_after])
-      puts "\e[1;32m#{deleted_sessions} old sessions were deleted\e[0m"
+      puts "\e[1;32m#{deleted_sessions} old sessions were deleted\e[0m" if Rake.verbose
     end
 
     desc 'Delete all session from an Active Record session store'

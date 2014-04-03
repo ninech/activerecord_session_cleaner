@@ -1,0 +1,3 @@
+every :hour do
+  rake "activerecord_session_cleaner:cleanup:old[<%= days_to_keep %>]"
+end
