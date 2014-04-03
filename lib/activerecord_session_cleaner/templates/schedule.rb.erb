@@ -1,3 +1,5 @@
+env :PATH, "#{ENV["PATH"]}:/usr/local/bin/bundle"
+
 every :hour do
   rake "activerecord_session_cleaner:cleanup:old[<%= days_to_keep %>]"
 end
