@@ -14,7 +14,7 @@ namespace :activerecord_session_cleaner do
                      args.days_to_keep.to_i.days.ago
                    end
       puts_if_verbose "\e[1;33mDeleting sessions before #{keep_after}\e[0m"
-      deleted_sessions = ActiverecordSessionCleaner::Session.delete_all(['updated_at < ?', keep_after])
+      deleted_sessions = ActiverecordSessionCleaner::Session.where'updated_at < ?', keep_after).delete_all 
       puts_if_verbose "\e[1;32m#{deleted_sessions} old sessions were deleted\e[0m"
     end
 
