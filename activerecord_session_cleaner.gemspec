@@ -16,6 +16,10 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_development_dependency 'rake', '~> 10.0'
+  s.add_development_dependency 'rspec', '~> 3.0'
+  s.add_development_dependency 'fantaskspec'
+  s.add_development_dependency 'activerecord', '>= 5.1'
+  s.add_development_dependency 'sqlite3'
 
   s.add_runtime_dependency 'whenever', '~> 0.9'
 end
