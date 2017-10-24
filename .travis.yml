@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+- 2.3.1
+- 2.3.4
+- 2.4.2
+gemfile:
+- gemfiles/activesupport-4.2.gemfile
+- gemfiles/activesupport-5.0.gemfile
+- gemfiles/activesupport-5.1.gemfile
+before_install:
+- gem install bundler
+notifications:
+  email:
+    on_success: never
