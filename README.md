@@ -1,4 +1,4 @@
-# activerecord_session_cleaner [![Gem Version](https://badge.fury.io/rb/activerecord_session_cleaner.png)](http://badge.fury.io/rb/activerecord_session_cleaner)
+# activerecord_session_cleaner [![Gem Version](https://badge.fury.io/rb/activerecord_session_cleaner.png)](http://badge.fury.io/rb/activerecord_session_cleaner) [![Build Status](https://travis-ci.org/ninech/activerecord_session_cleaner.svg)](https://travis-ci.org/ninech/activerecord_session_cleaner)
 
 Gem to remove old sessions from your ActiveRecord DB.
 
